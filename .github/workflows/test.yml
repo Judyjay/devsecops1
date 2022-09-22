@@ -13,7 +13,7 @@ jobs:
         run: |
           yarn install
           yarn start &
-          curl http://127.0.0.1:3010/hello
+          curl http://0.0.0.0:3010/hello
       - name: Done 
         run: |
           echo "Yaay!"

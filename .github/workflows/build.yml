@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,17 +19,24 @@ jobs:
           push: false
           load: true
 
-      #directory scanning
+      # directory scanning
       - name: Scan image
         uses: anchore/scan-action@v3
         with:
           image: "judy/devsecops1:latest"
       - name: Scan current project
+        id: scan
         uses: anchore/scan-action@v3
         with:
           path: "."
 
-      #scanning software bill of material
+      # upload SARIF file
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      # scanning software bill of material
       - name: Create SBOM
         uses: anchore/sbom-action@v0
         with:
@@ -40,3 +47,9 @@ jobs:
         uses: anchore/scan-action@v3
         with:
           sbom: "${{ github.event.repository.name }}-sbom.spdx.json"
+
+      - name: Upload SBOM
+        uses: actions/upload-artifact@master
+        with:
+          name: sbom
+          path: "${{ github.event.repository.name }}-sbom.spdx.json"

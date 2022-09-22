@@ -1,3 +1,4 @@
-.github/
+.github
 node_modules
 Dockerfile
+.vscode

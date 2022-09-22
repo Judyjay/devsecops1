@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  build:
+  scurity:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +29,7 @@ jobs:
         uses: anchore/scan-action@v3
         with:
           path: "."
+          fail-build: false
 
       # upload SARIF file
       - name: upload Anchore scan SARIF report

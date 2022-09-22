@@ -1,0 +1,15 @@
+{
+  "name": "devsecops1",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "repository": "git@github.com:Judyjay/devsecops1.git",
+  "author": "TheBeachmaster <otienoken@outlook.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

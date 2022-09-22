@@ -1,4 +1,4 @@
-name: "build image"
+name: "Build Image"
 
 on:
   push:
@@ -18,25 +18,25 @@ jobs:
           tags: judy/devsecops1:latest
           push: false
           load: true
-#directory scanning 
+
+      #directory scanning
       - name: Scan image
         uses: anchore/scan-action@v3
         with:
           image: "judy/devsecops1:latest"
       - name: Scan current project
         uses: anchore/scan-action@v3
-         with:
-         path: "."
-#scanning software bill of material
-    
+        with:
+          path: "."
+
+      #scanning software bill of material
       - name: Create SBOM
         uses: anchore/sbom-action@v0
         with:
-         format: spdx-json
-         output-file: "${{ github.event.repository.name }}-sbom.spdx.json"
+          format: spdx-json
+          output-file: "${{ github.event.repository.name }}-sbom.spdx.json"
 
       - name: Scan SBOM
         uses: anchore/scan-action@v3
-         with:
-         sbom: "${{ github.event.repository.name }}-sbom.spdx.json"
-      
+        with:
+          sbom: "${{ github.event.repository.name }}-sbom.spdx.json"

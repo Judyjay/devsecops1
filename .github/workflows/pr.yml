@@ -1,4 +1,4 @@
-name: "Test Pipeline"
+name: "Pull Request"
 
 on:
   pull_request:
@@ -9,8 +9,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-    
-      - name: Done 
+
+      - name: Done
         run: |
           echo "pull_request!"
-      

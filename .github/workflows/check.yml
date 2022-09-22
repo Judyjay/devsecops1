@@ -1,4 +1,4 @@
-name: "check API keys"
+name: "Check API Keys"
 
 on:
   push:
@@ -9,9 +9,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: check API key 
+      - name: Check API Key
         run: |
           ./check.sh
-      - name: Done 
+      - name: Done
         run: |
           echo "Yaay!"

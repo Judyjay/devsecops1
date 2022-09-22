@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  scurity:
+  security:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
